@@ -15,9 +15,7 @@ export class SampleController {
 
   getUser(req: Request, response: Response, next: NextFunction) {
     let u = new User({ firstName: "florin" });
-
     u.save();
-
     const id = req.params["id"];
     console.log(id);
     // find user

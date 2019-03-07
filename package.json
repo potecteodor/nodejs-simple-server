@@ -37,6 +37,7 @@
     "fs": "0.0.1-security",
     "mongoose": "^5.3.1",
     "mssql": "^4.1.0",
+    "mysql2": "^1.6.5",
     "nconf": "0.10.0",
     "path": "0.12.7",
     "rimraf": "2.6.2",
