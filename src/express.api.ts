@@ -9,7 +9,6 @@ import { Logger } from "./helpers/logger";
 import { ApiRouting } from "./api.routing";
 import { Api } from "./helpers/api";
 import { IConfig, AppSetting } from "./config";
-import { SwaggerController } from "./controller/swagger.controller";
 
 export class ExpressApi {
   public app: express.Express;
@@ -34,6 +33,29 @@ export class ExpressApi {
     this.app.use(json({ limit: "50mb" }));
     this.app.use(compression());
     this.app.use(urlencoded({ limit: "50mb", extended: true }));
+    if (this.config.corsDomains.length > 0) {
+      this.app.use((req, res, next) => {
+        res.setHeader('Access-Control-Allow-Origin', this.config.corsDomains[0])
+        res.setHeader(
+          'Access-Control-Allow-Methods',
+          'GET, POST, OPTIONS, PUT, PATCH, DELETE'
+        )
+        /* res.setHeader(
+          'Access-Control-Allow-Headers',
+          'Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With' +
+            ',' +
+            this.config.crypt.hh
+        ) */
+        res.setHeader('Access-Control-Allow-Credentials', 'true')
+        next()
+      })
+
+
+      this.app.disable('x-powered-by')
+      // check login hash
+      // this.app.all('/*', AuthService.checkHeader)
+    }
+
     Logger.configureLogger(this.app);
   }
 
@@ -60,7 +82,6 @@ export class ExpressApi {
     });
 
     ApiRouting.ConfigureRouters(this.app);
-    SwaggerController.configure(this.app);
   }
 
   private errorHandler() {

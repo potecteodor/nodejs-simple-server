@@ -1,17 +1,17 @@
 import { SqlManager } from '../helpers/sequelize/sql.manager';
-import { ICustomer } from '../entities/ICustomer';
+import { ICustomer } from '../entities/customer.interface';
 export class CustomerManager {
     private db: SqlManager;
     constructor() {
         this.db = new SqlManager();
     }
     public addCustomer(customer: ICustomer) {
-        let query = "INSERT INTO customers (name,address) VALUES(:Name,:Address)";
+        let query = "INSERT INTO customers (name,address) VALUES(:name,:address)";
         return this.db.Insert(query, customer);
     }
 
     public updateCustomer(customer: ICustomer) {
-        let query = "UPDATE customers SET name=:Name, address=:Address WHERE Id=:Id";
+        let query = "UPDATE customers SET name=:name, address=:address WHERE id=:id";
         return this.db.Update(query, customer);
     }
 

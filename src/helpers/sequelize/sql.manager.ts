@@ -23,32 +23,32 @@ export class SqlManager {
         return this._sequelize.query(qry, { type: this._sequelize.QueryTypes.SELECT });
     }
 
-    public Get(qry: string, vals: any = null) {
-        let param = this.params ? this.params : vals;
+    public Get(qry: string, values: any = null) {
+        let param = this.params ? this.params : values;
         return this._sequelize.query({
             query: qry,
             values: param
         }, { type: this._sequelize.QueryTypes.SELECT });
     }
 
-    public Insert(qry: string, vals: any = null) {
-        let param = this.params ? this.params : vals;
+    public Insert(qry: string, values: any = null) {
+        let param = this.params ? this.params : values;
         return this._sequelize.query({
             query: qry,
             values: param
         }, { type: this._sequelize.QueryTypes.INSERT });
     }
 
-    public Update(qry: string, vals: any = null) {
-        let param = this.params ? this.params : vals;
+    public Update(qry: string, values: any = null) {
+        let param = this.params ? this.params : values;
         return this._sequelize.query({
             query: qry,
             values: param
         }, { type: this._sequelize.QueryTypes.UPDATE });
     }
 
-    public Delete(qry: string, vals: any = null) {
-        let param = this.params ? this.params : vals;
+    public Delete(qry: string, values: any = null) {
+        let param = this.params ? this.params : values;
         return this._sequelize.query({
             query: qry,
             values: param

@@ -1,6 +1,9 @@
 {
   "Config": {
     "port": 3000,
+    "corsDomains": [
+      "http://localhost:4200"
+    ],
     "appConfig": {
       "version": "0.0.1",
       "name": "node-simple-server",

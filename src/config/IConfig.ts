@@ -1,5 +1,6 @@
 export interface IConfig {
-    appConfig: any;
-    DBConnections: any;
-    port: number;
+  appConfig: any;
+  corsDomains: string[];
+  DBConnections: any;
+  port: number;
 }
