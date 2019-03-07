@@ -40,3 +40,4 @@ Thumbs.db
 
 bundle.js
 yarn.lock
+/package-lock.json
