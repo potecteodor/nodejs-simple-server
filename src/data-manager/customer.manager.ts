@@ -1,10 +1,17 @@
 import { SqlManager } from '../helpers/sequelize/sql.manager';
 import { ICustomer } from '../entities/customer.interface';
 export class CustomerManager {
+
     private db: SqlManager;
     constructor() {
         this.db = new SqlManager();
     }
+
+    getCustomersWithTasks(): any {
+      let query = "Select * from customers left join tasks...";
+      return this.db.Get(query);
+    }
+
     public addCustomer(customer: ICustomer) {
         let query = "INSERT INTO customers (name,address) VALUES(:name,:address)";
         return this.db.Insert(query, customer);

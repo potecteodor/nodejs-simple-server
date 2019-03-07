@@ -7,11 +7,23 @@ export class CustomerController {
   public router: Router = Router();
   constructor() {
     this.router.get("/", this.getCustomer);
+    this.router.get("/task", this.getCustomerWithTasks);
     this.router.get("/:id", this.getCustomerById);
     this.router.post("/", this.addCustomer);
     this.router.put("/", this.updateCustomer);
     this.router.delete("/:id", this.deleteCustomer);
   }
+
+  public async getCustomerWithTasks(request: Request, response: Response) {
+    try {
+      const manager = new CustomerManager();
+      const result = await manager.getCustomersWithTasks();
+      Api.ok(request, response, result);
+    } catch (e) {
+      return Api.serverError(request, response, e);
+    }
+  }
+
   public getCustomer(request: Request, response: Response, next: NextFunction) {
     let manager = new CustomerManager();
     manager.getCustomers().then(
